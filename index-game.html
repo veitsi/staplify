@@ -4,39 +4,53 @@
     <meta charset="UTF-8">
     <title>multi-player quizful</title>
 </head>
+<script>
+    function sendAnswer(num){
+        console.log(num);
+        var player1Ref = myFirebaseRef.child("player1");
+        player1Ref.set(num);
+    }
+</script>
 <form name="main">
-    <div id="question">What language can be used for writing backend</div>
-    <input type="text" name="answer" value="">
-    <input id="b1" name="b1" type="button" value="1">
-    <input id="b2" name="b2" type="button" value="2">
-    <input id="b3" name="b3" type="button" value="3">
-</form>
-<hr>
-<form name="player2">
-    <input type="text" id="player2answer">
+    <div id="question"><input type="text" name="answer" value="" size="50"></div>
+
+    <input id="b1" name="b1" type="button" value="1" onclick="sendAnswer(1)">
+    <input id="b2" name="b2" type="button" value="2" onclick="sendAnswer(2)">
+    <input id="b3" name="b3" type="button" value="3" onclick="sendAnswer(3)">
 </form>
 
-cc
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script src="js/main.js"></script>
 <script>
-    var counter=0;
-    var myFirebaseRef = new Firebase("https://burning-fire-6341.firebaseio.com/");
+
     myFirebaseRef.set({
         version: counter,
-        answer: main.answer.value,
-        player1: 1,
-        player2: 2,
+        question: "what language can be used for writng backend?",
+        answer1: "java",
+        answer2: "html",
+        answer3: "chinese",
+        player1: 0,
+        player1score: 0,
+        player2: 0,
+        player2score: 0,
         author: "Firebase"
     });
-    myFirebaseRef.child("player1").on("value", function(snapshot) {
-        alert(snapshot.val());  // Alerts "San Francisco"
-    });
-    b1.onclick=function(){
-        var player1Ref = myFirebaseRef.child("player1");
-        player1Ref.set(counter);
-        counter++;
-        console.log("user clicked");
-        console.log(main.b1.value);
+//    myFirebaseRef.child("player1").on("value", function(snapshot) {
+//        alert(snapshot.val());  // Alerts "San Francisco"
+//    });
+    function answer(num){
+        console.log(num);
     }
+//    b1.onclick=answer(1);
+//    b2.onclick=answer(2);
+//    b3.onclick=answer(3);
+//    b1.onclick=function(){
+//        var player1Ref = myFirebaseRef.child("player1");
+//        player1Ref.set(counter);
+//        counter++;
+//        console.log("user clicked");
+//        console.log(main.b1.value);
+//    }
 </script>
 
 </body>
