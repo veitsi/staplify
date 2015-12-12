@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>player2 page</title>
+</head>
+<body>
+
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script>
+    var myFirebaseRef = new Firebase("https://burning-fire-6341.firebaseio.com/");
+    myFirebaseRef.child("player1").on("value", function(snapshot) {
+        alert(snapshot.val());  // Alerts "San Francisco"
+    });
+</script>
+</body>
+</html>

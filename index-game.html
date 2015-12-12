@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <title>multi-player quizful</title>
 </head>
-<form name="main" method="get" action="index-game.html">
+<form name="main">
     <div id="question">What language can be used for writing backend</div>
-    <input id="text" name="text" type="text">
-    <input id="1" name="1" type="submit" value="1">
-    <input id="2" name="2" type="submit" value="2">
-    <input id="3" name="3" type="submit" value="3">
-
+    <input type="text" name="answer" value="">
+    <input id="b1" name="b1" type="button" value="1">
+    <input id="b2" name="b2" type="button" value="2">
+    <input id="b3" name="b3" type="button" value="3">
+</form>
+<hr>
+<form name="player2">
+    <input type="text" id="player2answer">
 </form>
 
+cc
 <script>
-    main.onclick=function(){
-        alert("user submitted form")
+    var counter=0;
+    var myFirebaseRef = new Firebase("https://burning-fire-6341.firebaseio.com/");
+    myFirebaseRef.set({
+        version: counter,
+        answer: main.answer.value,
+        player1: 1,
+        player2: 2,
+        author: "Firebase"
+    });
+    myFirebaseRef.child("player1").on("value", function(snapshot) {
+        alert(snapshot.val());  // Alerts "San Francisco"
+    });
+    b1.onclick=function(){
+        var player1Ref = myFirebaseRef.child("player1");
+        player1Ref.set(counter);
+        counter++;
+        console.log("user clicked");
+        console.log(main.b1.value);
     }
 </script>
 
