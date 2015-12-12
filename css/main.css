@@ -47,10 +47,26 @@
     margin-top: 10px;
 }
 
-#question {
+.navbar-inverse .navbar-toggle {
+    border-color: #ccc;
+}
+
+.question-block {
     min-height: 100px;
     padding: 80px 15px;
     text-align: center;
+}
+
+.question-block .btn {
+    margin-top: 15px;
+}
+
+.question-block .question-block-head {
+    padding: 5px;
+    font-weight: 700;
+    font-size: 24px;
+    width: 90%;
+    border: 0;
 }
 
 #about {
