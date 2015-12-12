@@ -9,6 +9,11 @@
         console.log(num);
         var player1Ref = myFirebaseRef.child("player1");
         player1Ref.set(num);
+        counter+=1;
+        myFirebaseRef.child("question").set(testBase[counter][0]);
+        myFirebaseRef.child("answer1").set(testBase[counter][1]);
+        myFirebaseRef.child("answer2").set(testBase[counter][2]);
+        myFirebaseRef.child("answer3").set(testBase[counter][3]);
     }
 </script>
 <form name="main">
@@ -22,13 +27,17 @@
 <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 <script src="js/main.js"></script>
 <script>
+    var testBase=[["what language can be used for writng backend?", "java", "html", "chinese"],
+    ["What program can be used to surf Internet?", "Firefox","notepad", "media player"],
+    ["What is operation system?", "Minisoft Clismous","Microsoft Windows","Pinux"]
+    ];
 
     myFirebaseRef.set({
         version: counter,
-        question: "what language can be used for writng backend?",
-        answer1: "java",
-        answer2: "html",
-        answer3: "chinese",
+        question: testBase[counter][0],
+        answer1: testBase[counter][1],
+        answer2: testBase[counter][2],
+        answer3: testBase[counter][3],
         player1: 0,
         player1score: 0,
         player2: 0,
@@ -38,9 +47,6 @@
 //    myFirebaseRef.child("player1").on("value", function(snapshot) {
 //        alert(snapshot.val());  // Alerts "San Francisco"
 //    });
-    function answer(num){
-        console.log(num);
-    }
 //    b1.onclick=answer(1);
 //    b2.onclick=answer(2);
 //    b3.onclick=answer(3);
