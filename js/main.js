@@ -9,7 +9,6 @@ var testBase = [["what language can be used for writing backend?", "java", "html
     ["Кто отвечает за саппорт на Hack new year","Александра Поляничко","Анастасия Лужочко","Алина Степочко",1],
     ["What program can be used to surf Internet?", "firefox", "notepad", "disk defragmemnator", 1],
     ["Which of items is an operation system?", "Minisoft Clismows", "Microsoft Windows", "RedCab Lanux", 2]
-    ["В каком месяце наступает Новый Год?", "Январь", "Декабрь", "Ноябрь", 1]
 ];
 myFirebaseRef.child("questionItem").on("value", function (snapshot) {
     console.log('something updated on server ' + snapshot.val().question);
