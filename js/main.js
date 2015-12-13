@@ -18,6 +18,10 @@ myFirebaseRef.child("questionItem").on("value", function (snapshot) {
     main.b2.value = snapshot.val().answer2;
     main.b3.value = snapshot.val().answer3;
 });
+myFirebaseRef.child("score").on("value", function (snapshot) {
+    document.getElementById("score1").innerHTML=snapshot.val().s1;
+    document.getElementById("score2").innerHTML=snapshot.val().s2;
+});
 
 myFirebaseRef.child("resetGame").on("value", function (snapshot) {
     if (snapshot.val() === false) return;
@@ -39,7 +43,7 @@ function foo() {
             answer2: "",
             answer3: ""
         },
-        score: [0, 0],
+        score:{s1:0,s2:0},
         players: {
             turn1: 0,
             turn2: 0
@@ -55,6 +59,7 @@ function bar() {
         if (playersCounter < maxPlayers) {
             playersCounter += 1;
             id = playersCounter;
+            document.getElementById("userid").innerHTML=id;
             myFirebaseRef.child("playersCounter").set(playersCounter);
             myFirebaseRef.child("resetGame").set(false);
             if (playersCounter === maxPlayers) {
@@ -79,8 +84,10 @@ function bar() {
                             score2 += 1;
 
                         }
-                        document.getElementById("score1").innerHTML=score1;
-                        document.getElementById("score2").innerHTML=score2;
+                        myFirebaseRef.child("score").child("s1").set(score1);
+                        myFirebaseRef.child("score").child("s2").set(score2);
+                        //document.getElementById("score1").innerHTML=score1;
+                        //document.getElementById("score2").innerHTML=score2;
                         if (counter < testBase.length - 1) {
                             counter += 1;
                             nextQuestion();
