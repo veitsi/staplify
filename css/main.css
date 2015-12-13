@@ -1,7 +1,87 @@
-#question {
+.navbar-brand {
+    padding: 2px 15px 2px 2px;
+}
+
+.navbar-inverse {
+    background-color: #f8f8f8;
+    border-color: #d4d4d4;
+}
+
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-nav>li>a:hover
+{
+    float: none;
+    padding: 15px;
+    color: #777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #333;
+}
+
+.navbar-inverse .navbar-nav>li>a.btn {
+    padding: 4px 14px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    cursor: pointer;
+}
+
+.navbar-inverse .navbar-nav .active .btn {
+    background-color: #e6e6e6;
+    border-color: #c5c5c5;
+    opacity: .65;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus
+{
+    color: #555;
+    text-decoration: none;
+    background-color: #e5e5e5;
+}
+
+.navbar-inverse .navbar-nav .active .btn {
+    margin-top: 10px;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ccc;
+}
+
+.question-block {
     min-height: 100px;
     padding: 80px 15px;
     text-align: center;
+}
+
+.question-block .btn {
+    margin-top: 15px;
+}
+
+.question-block .question-block-head {
+    padding: 5px;
+    font-weight: 700;
+    font-size: 24px;
+    width: calc(90% - 400px);
+    border: 0;
+}
+
+.userleft {
+    float: left;
+    left: 0;
+}
+
+.userright {
+    float: right;
+    right: 0;
+}
+
+#result {
+    text-align: center;
+    margin-top: 30px;
 }
 
 #about {
@@ -11,7 +91,12 @@
 }
 
 .text-muted {
-    padding-top: 10px;
+    padding-top: 20px;
+    float: left;
+}
+
+.footer-logo {
+    float: right;
 }
 
 #footer {
