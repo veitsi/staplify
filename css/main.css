@@ -50,6 +50,9 @@
 .navbar-inverse .navbar-toggle {
     border-color: #ccc;
 }
+#question{
+    font-size: large;
+}
 
 .question-block {
     min-height: 100px;

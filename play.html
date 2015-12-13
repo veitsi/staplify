@@ -14,7 +14,7 @@
     <input id="b2" name="b2" type="button" value="2" onclick="sendAnswer(2)">
     <input id="b3" name="b3" type="button" value="3" onclick="sendAnswer(3)">
     <hr>
-    <input disabled id="reset" name="reset" type="button" value="reset" onclick="foo(0)">
+    <input  id="reset" name="reset" type="button" value="reset" onclick="foo(0)">
     <input id="feelStaply" name="feelStaply" type="button" value="feelStaply" onclick="bar(0)">
 </form>
 <form name="console">
@@ -24,6 +24,7 @@
 </form>
 
 <script>
+    bar();
 //    var myFirebaseRef = new Firebase("https://burning-fire-6341.firebaseio.com/");
 //    myFirebaseRef.on("value", function(snapshot){
 //        console.log('something updated on server '+snapshot.val().question);
