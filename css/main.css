@@ -65,8 +65,23 @@
     padding: 5px;
     font-weight: 700;
     font-size: 24px;
-    width: 90%;
+    width: calc(90% - 400px);
     border: 0;
+}
+
+.userleft {
+    float: left;
+    left: 0;
+}
+
+.userright {
+    float: right;
+    right: 0;
+}
+
+#result {
+    text-align: center;
+    margin-top: 30px;
 }
 
 #about {
