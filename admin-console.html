@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script>
+    function reset(){
+        var counter=0;
+        var myFirebaseRef = new Firebase("https://boiling-torch-1773.firebaseio.com//");
+        myFirebaseRef.set({
+            playersCounter:0,
+            player1: 0,
+            player1score: 0,
+            player2: 0,
+            player2score: 0,
+            author: "Firebase"
+        });
+    }
+    reset();
+</script>
+
+</body>
+</html>
