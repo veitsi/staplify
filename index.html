@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staplify HackNewYear</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -22,12 +22,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <button onclick="bar(1)"><img src="./img/logo.png" class="navbar-brand" alt="Лого"></button>
+            <img src="./img/logo.png" class="navbar-brand" alt="Лого">
+            <li class="active"><a class="btn" href="./" onclick="bar(0)">Начать викторину</a></li>
+
             <!--<a onclick="bar(1)" class="navbar-brand" title="Главная" href="./"><img src="./img/logo.png" alt="Лого"></a>-->
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a class="btn" href="./">Главная</a></li>
                 <li><a href="./about.html">О проекте</a></li>
             </ul>
         </div>
@@ -51,10 +52,10 @@
             <input class="btn btn-lg btn-default" id="b2" name="b2" type="button" value="2" onclick="sendAnswer(2)">
             <input class="btn btn-lg btn-default" id="b3" name="b3" type="button" value="3" onclick="sendAnswer(3)">
         </form>
-        <script>
-
-
-        </script>
+        <form name="admin">
+            <input type="button" onclick="startStapling(0)" value="start Game">
+            <input type="button" onclick="initFirebaseData(0)" value="reset Firebase">
+        </form>
     </div>
 </div>
 
@@ -67,11 +68,15 @@
 <div id="footer">
     <div class="container">
         <p class="text-muted">Staplify © 2015</p>
-        <button class="footer-logo" onclick="foo(1);console.log('reset')"><img src="./img/footer-logo.jpg" height="60" width="60" alt="HackNewYear"></button>
+        <button class="footer-logo" id="footer-logo"><img src="./img/footer-logo.jpg" height="60" width="60"
+                                                          alt="HackNewYear"></button>
         <!--<a class="footer-logo" title="HackNewYear" href="#"><img src="./img/footer-logo.jpg" height="60" width="60" alt="HackNewYear"></a>-->
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+    //document.getElementById("footer-logo").onclick = InitFirebaseData();
+</script>
 </body>
 </html>
