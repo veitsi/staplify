@@ -54,7 +54,7 @@
         </form>
         <form name="admin">
             <input type="button" onclick="startStapling(0)" value="start Game">
-            <input type="button" onclick="initFirebaseData(0)" value="reset Firebase">
+            <!--<input type="button" onclick="initFirebaseData(0)" value="reset Firebase">-->
         </form>
     </div>
 </div>
@@ -68,8 +68,8 @@
 <div id="footer">
     <div class="container">
         <p class="text-muted">Staplify © 2015</p>
-        <button class="footer-logo" id="footer-logo"><img src="./img/footer-logo.jpg" height="60" width="60"
-                                                          alt="HackNewYear"></button>
+        <button class="footer-logo" id="footer-logo" onclick="initFirebaseData(0)">
+        <img src="./img/footer-logo.jpg" height="60" width="60" alt="HackNewYear"></button>
         <!--<a class="footer-logo" title="HackNewYear" href="#"><img src="./img/footer-logo.jpg" height="60" width="60" alt="HackNewYear"></a>-->
     </div>
 </div>

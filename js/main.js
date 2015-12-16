@@ -93,7 +93,8 @@ function startStapling() {
             ["Кто является отцом системы GNU/Linux?", "Билл Гейтс", "Линус Торвальдс", "Антон Попов", 2],
             ["Для чего нужен бубен?", "Для настройки серверов", "Для улучшения приема wi-fi", "Для игры в ансамблях", 3],
             ["What program can be used to surf Internet?", "firefox", "notepad", "disk defragmemnator", 1],
-            ["Which of items is an operation system?", "Minisoft Clismows", "Microsoft Windows", "RedCab Lanux", 2]];
+            ["Which of items is an operation system?", "Minisoft Clismows", "Microsoft Windows", "RedCab Lanux", 2],
+            ["Игра закончена. довольны ли Вы результатом","Да, все отличнно","Нет, все отлично","Мне все нравится",1]];
         myFirebaseRef.child("players").on("value", function (snapshot) {
             console.log("new answer received");
             var turn1 = snapshot.val().turn1;
