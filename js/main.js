@@ -1,4 +1,5 @@
 var id = 0;
+var gameStarted=false;
 var myFirebaseRef = new Firebase("https://boiling-torch-1773.firebaseio.com//");
 
 function test() {
@@ -19,23 +20,22 @@ function startWatchersOnClient() {
         document.getElementById("score1").innerHTML = snapshot.val()[0];
         document.getElementById("score2").innerHTML = snapshot.val()[1];
     });
-    myFirebaseRef.child("gameStarted").on("value", function (snapshot) {
-        if (snapshot.val() === true) {
-        }
-    });
     myFirebaseRef.child("resetGame").on("value", function (snapshot) {
-        if (snapshot.val() === false) return;
-        id = 0;
-        console.log('out of the game');
+        if (snapshot.val() === true) {
+            if (gameStarted) {id = 0;gameStarted=false}
+            console.log('out of the game');
+        }
+        else {
+            gameStarted=true;
+        }
     });
 }
 
 function initFirebaseData() {
-    var MAX_PLAYERS = 1;
-    console.log("reset");
+    var MAX_PLAYERS = 2;
+    console.log("reset in firebase");
     myFirebaseRef.set({
         resetGame: true,
-        gameStarted: false,
         playersAllowed: MAX_PLAYERS,
         questionItem: {
             questionId: -1,
@@ -60,12 +60,12 @@ function startStapling() {
             var playersAllowed = data.val();
             console.log(playersAllowed);
             if (playersAllowed > 0) {
+                startWatchersOnClient();
+                myFirebaseRef.child("playersAllowed").set(playersAllowed - 1);
                 console.log("yes, there is a free place");
                 id = playersAllowed;
-                playersAllowed -= 1;
                 document.getElementById("userid").innerHTML = id;
-                myFirebaseRef.child("playersAllowed").set(playersAllowed);
-                startWatchersOnClient();
+
                 if (id === 1) {
                     myFirebaseRef.child("resetGame").set(false);
                     startStaplifyServerWatcher();
@@ -82,11 +82,16 @@ function startStapling() {
 
     function startStaplifyServerWatcher() {
         console.log("I'm a boss!");
-        var counter = 0;var score1 = 0;var score2 = 0;
+        var counter = 0;
+        var score1 = 0;
+        var score2 = 0;
         var testBase = [["what language can be used for writing backend?", "java", "html", "chinese", 1],
-            ["Кого зовут на новый год?", "Дедушку мороза", "Линуса Торвальдса", "Бабу Ягу", 1],
+            ["Каким образом определяется тип переменной в языках с динамической типизацией?", "у переменных нет типов",
+                "По типу хранимых в переменной данных", "Тип определяется пользователем", 2],
+            ["Чем отличаются функции от процедуры?", "Код функций более строго проверяется компилятором",
+                "В функцию можно передавать параметры", "Функция может возвращать значение", 3],
+            ["Кто является отцом системы GNU/Linux?", "Билл Гейтс", "Линус Торвальдс", "Антон Попов", 2],
             ["Для чего нужен бубен?", "Для настройки серверов", "Для улучшения приема wi-fi", "Для игры в ансамблях", 3],
-            ["Кто отвечает за саппорт на Hack new year", "Александра Поляничко", "Анастасия Лужочко", "Алина Степочко", 1],
             ["What program can be used to surf Internet?", "firefox", "notepad", "disk defragmemnator", 1],
             ["Which of items is an operation system?", "Minisoft Clismows", "Microsoft Windows", "RedCab Lanux", 2]];
         myFirebaseRef.child("players").on("value", function (snapshot) {
@@ -104,12 +109,17 @@ function startStapling() {
                     console.log('player2 is amazing smart');
                     score2 += 1;
                 }
-                myFirebaseRef.child("score").set([score1,score2]);
+                console.log(score1, score2, "question # ", counter);
+                myFirebaseRef.child("score").set([score1, score2]);
                 if (counter < testBase.length - 1) {
                     counter += 1;
                     nextQuestion();
                 }
-                console.log(score1, score2);
+                else {
+                    console.log('out of questions');
+                    initFirebaseData();
+                    myFirebaseRef.child("players").off();
+                }
             }
         });
         nextQuestion();
@@ -122,15 +132,15 @@ function startStapling() {
                 question: testBase[counter][0],
                 answer1: testBase[counter][1],
                 answer2: testBase[counter][2],
-                answer3: testBase[counter][3]
+                answer3: testBase[counter][3],
+                questionId: counter
             });
         }
     }
-
 }
 
 function sendAnswer(num) {
-    console.log("user pressed "+num);
+    console.log("user pressed " + num + " for id:" + id);
     myFirebaseRef.child("players").child("turn" + id).set(num);
 }
 
